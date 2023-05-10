@@ -12,7 +12,7 @@ function App() {
     const checkUser = async () => {
       try {
         const respnse = await api.get(
-          `/getUser?userName=${localStorage.getItem("ToDoList")}`
+          `/getUser?userName=${localStorage.getItem("TeamProsjektUserName")}`
         );
         console.log(respnse.data);
         if (respnse.data !== null) setCurentPage("ToDoList");

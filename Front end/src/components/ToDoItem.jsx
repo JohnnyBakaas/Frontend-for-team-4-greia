@@ -1,8 +1,8 @@
-const ToDoItem = ({ item, api, setItemChanges }) => {
+const ToDoItem = ({ item, api, setItemChanges, setItems, items }) => {
   const markAsDone = async () => {
     try {
-      const response = await api.put(`/markTaskAsDone?taskId=${item.id}`);
-      setItemChanges(1);
+      await api.put(`/markTaskAsDone?taskId=${item.id}`);
+      setItems(items.filter((e) => e.id !== item.id));
     } catch (err) {
       console.log(err);
     }

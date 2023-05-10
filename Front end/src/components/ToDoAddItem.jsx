@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const ToDoAddItem = ({ setItemChanges, itemChanges, api }) => {
+const ToDoAddItem = ({ setItems, items, api }) => {
   const [tittel, setTittel] = useState("");
   const [description, setDescription] = useState("");
 
@@ -22,18 +22,19 @@ const ToDoAddItem = ({ setItemChanges, itemChanges, api }) => {
         createdDate: "2023-05-10T03:51:17.502Z",
         doneDate: "2023-05-10T03:51:17.502Z",
         userId: localStorage.getItem("TeamProsjektUserId"),
-        id: 0,
+        id: items[items.length - 1].id + 1,
       };
 
       const respnse = await api.post("/newTask", body);
       console.log(respnse);
+
+      setItems([...items, body]);
     } catch (err) {
       console.log(err);
     }
 
     setTittel("");
     setDescription("");
-    setItemChanges(2);
   };
   return (
     <form onSubmit={AddItem}>

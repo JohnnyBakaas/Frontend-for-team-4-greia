@@ -2,9 +2,8 @@ import { useEffect, useState } from "react";
 import Loading from "./Loading";
 import ToDoItem from "./ToDoItem";
 
-const ToDoITems = ({ setItemChanges, itemChanges, api }) => {
+const ToDoITems = ({ items, setItems, api }) => {
   const [loading, setLoading] = useState(true);
-  const [items, setItems] = useState();
 
   useEffect(() => {
     const getToDoItems = async () => {
@@ -15,14 +14,13 @@ const ToDoITems = ({ setItemChanges, itemChanges, api }) => {
         const data = response.data.filter((e) => !e.doneDate);
         setItems(data);
         setLoading(false);
-        setItemChanges(0);
       } catch (err) {
         console.log(err);
       }
     };
 
     getToDoItems();
-  }, [itemChanges]);
+  }, []);
 
   if (loading) return <Loading />;
   if (!items.length) return <h1>Du har gjort alt på listen din!🎉🎉🎉</h1>;
@@ -42,7 +40,8 @@ const ToDoITems = ({ setItemChanges, itemChanges, api }) => {
             key={item.id}
             item={item}
             api={api}
-            setItemChanges={setItemChanges}
+            setItems={setItems}
+            items={items}
           />
         ))}
       </tbody>

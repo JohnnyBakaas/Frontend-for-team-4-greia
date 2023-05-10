@@ -13,7 +13,7 @@ const LogIn = ({ setCurentPage, api }) => {
       try {
         const respnse = await api.get(`/getUser?userName=${name}`);
         const data = respnse.data;
-        localStorage.setItem("ToDoList", data.name);
+        localStorage.setItem("TeamProsjektUserName", data.name);
         localStorage.setItem("TeamProsjektUserId", data.id);
         setCurentPage("ToDoList");
       } catch (err) {

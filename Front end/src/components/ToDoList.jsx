@@ -3,11 +3,10 @@ import ToDoITems from "./TODOItems";
 import ToDoAddItem from "./ToDoAddItem";
 
 const ToDoList = ({ setCurentPage, api }) => {
-  const [itemChanges, setItemChanges] = useState(0);
+  const [items, setItems] = useState(0);
 
   const logOut = () => {
-    localStorage.setItem("ToDoList", "");
-    localStorage.setItem("TeamProsjektUserId", "");
+    localStorage.clear();
     setCurentPage("LogIn");
   };
 
@@ -15,17 +14,9 @@ const ToDoList = ({ setCurentPage, api }) => {
     <>
       <button onClick={logOut}>Logg ut</button>
 
-      <ToDoAddItem
-        setItemChanges={setItemChanges}
-        itemChanges={itemChanges}
-        api={api}
-      />
+      <ToDoAddItem setItems={setItems} items={items} api={api} />
 
-      <ToDoITems
-        setItemChanges={setItemChanges}
-        itemChanges={itemChanges}
-        api={api}
-      />
+      <ToDoITems setItems={setItems} items={items} api={api} />
     </>
   );
 };
